@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAD Pathway KG Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="panel-header">
+        <img class="brand-mark" src="asset/logo.png" alt="GENAI4FFD logo">
+        <div class="brand-divider"></div>
+        <h2 class="sidebar-title">Entity Explorer</h2>
+      </div>
+      <div class="file-picker">
+        <label>
+          <span>Demo Dataset</span>
+          <select id="dxfFileSelect"></select>
+        </label>
+      </div>
+      <div class="controls">
+        <label>
+          <span>Type</span>
+          <select id="entityType">
+            <option value="">All</option>
+            <option value="Machine">Machine</option>
+            <option value="Pathway">Pathway</option>
+            <option value="OverlapZone">OverlapZone</option>
+            <option value="Region">Region</option>
+            <option value="Europallet">Europallet</option>
+            <option value="EvidenceRef">EvidenceRef</option>
+          </select>
+        </label>
+        <label>
+          <span>Search</span>
+          <input id="entitySearch" type="search" placeholder="Machine_M07, Pathway_T001">
+        </label>
+      </div>
+      <div id="entityList" class="entity-list"></div>
+    </aside>
+
+    <main class="workspace">
+      <section class="top-row">
+        <div class="panel">
+          <div class="panel-bar">
+            <h2>Factory Pathway Layout</h2>
+          </div>
+          <div class="image-panel">
+            <div class="image-stack">
+              <svg id="layoutCanvas" class="layout-canvas" viewBox="0 0 100 100" aria-label="Interactive factory layout"></svg>
+            </div>
+            <div id="layoutSelectionInfo" class="layout-selection-info">
+              <span id="layoutSelectionText">Hover or click an interactive layout element to inspect its linked entity.</span>
+              <div class="layout-evidence-anchor">
+                <button id="layoutEvidenceToggle" type="button" class="layout-evidence-toggle" aria-label="Show related files" hidden>▾</button>
+                <div id="layoutEvidencePopover" class="layout-evidence-popover" hidden>
+                  <div id="evidenceList" class="evidence-list"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-bar">
+            <h2>Knowledge Graph</h2>
+            <div class="graph-toolbar">
+              <span id="schemaSummary" class="schema-summary"></span>
+              <div class="zoom-controls">
+                <button id="graphZoomOut" type="button" class="ghost-button zoom-button" aria-label="Zoom out">-</button>
+                <button id="graphZoomReset" type="button" class="ghost-button zoom-button" aria-label="Reset zoom">100%</button>
+                <button id="graphZoomIn" type="button" class="ghost-button zoom-button" aria-label="Zoom in">+</button>
+              </div>
+            </div>
+          </div>
+          <svg id="graphView" class="graph-view" viewBox="0 0 720 420"></svg>
+        </div>
+      </section>
+
+      <section class="chat-panel panel">
+        <div class="panel-bar">
+          <h2>Question Answering</h2>
+        </div>
+        <div class="qa-grid">
+          <div class="qa-controls">
+            <div class="chat-toolbar qa-toolbar">
+              <button id="loadQuestionsButton" class="ghost-button">Load Question Bank</button>
+            </div>
+            <div id="questionBank" class="question-bank"></div>
+            <form id="chatForm" class="chat-form">
+              <textarea id="questionInput" rows="6" placeholder="Ask about machines, pathways, overlap zones, regions, or evidence provenance."></textarea>
+              <div class="chat-actions">
+                <span id="ollamaStatus" class="status-inline" aria-live="polite">
+                  <span id="statusIcon" class="status-icon">○</span>
+                  <span id="statusText">Loading Demo</span>
+                </span>
+                <button type="submit">Ask</button>
+              </div>
+            </form>
+          </div>
+          <div class="qa-results">
+            <div class="answer-heading">Matched Answer</div>
+            <div id="answerText" class="answer-text">Select a question from the question bank to display its stored answer.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
