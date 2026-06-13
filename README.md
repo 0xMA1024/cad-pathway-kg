@@ -2,7 +2,7 @@
 
 Static web demonstration of paper `Automated CAD Parsing and Knowledge Graph Construction for LLM-based Spatial Query Answering in Factory Pathway Planning` for exploring a factory pathway layout, the text-based knowledge graph, and question-answering results.
 
-![CAD Pathway KG web interface](asset/webui.jpg)
+![CAD Pathway KG web interface](asset/webui-20260613.jpg)
 
 ## Included Data
 
